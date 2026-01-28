@@ -1,0 +1,94 @@
+html,
+body {
+    margin: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sansserif;
+}
+
+header {
+    background-color: #e1a36f;
+    color: #ffffff;
+    width: 98%;
+    height: 125px;
+    margin: 1%;
+}
+
+header h1 {
+    text-align: center;
+    padding: 25px;
+    font-size: 75px;
+}
+
+.bar {
+    background-color: #577e89;
+    color: #ffffff;
+    width: 98%;
+    height: 80px;
+    margin: 1%;
+}
+
+.bar h2 {
+    text-align: center;
+    padding: 20px;
+    font-size: 40px;
+}
+
+.box.text {
+    background: #6f9f9c;
+    color: #fff;
+    width: 98%;
+    height: 170px;
+    margin: 1%;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.box.text p {
+    font-size: 25px;
+    margin: 0 0 8px 0;
+}
+
+.box.text ul {
+    padding-left: 40px;
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+.wrapper {
+    background-color: #6f9f9c;
+    width: 98%;
+    height: 390px;
+    margin: 1%;
+}
+
+.wrapper .page {
+    width: 24%;
+    height: 180px;
+    background-color: #ffffff;
+    display: inline-block;
+    border-radius: 30px;
+    margin: 0.4%;
+}
+
+footer {
+    background-color: #577e89;
+    color: #fff;
+    width: 98%;
+    height: 60px;
+    margin: 1%;
+}
+
+footer p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.image_link {
+    height: 160px;
+    width: 18.5vw;
+    margin: 2% 0 1% 10%;
+}
+
+.image_link:hover {
+    filter: grayscale(70%);
+}
