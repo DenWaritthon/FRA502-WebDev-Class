@@ -1,0 +1,76 @@
+/* =========================
+   STAR OVERLAY (MULTI-SIZE)
+========================= */
+
+.stars-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* SMALL STARS */
+.stars-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 120px 150px, white, transparent),
+    radial-gradient(2px 2px at 300px 80px, white, transparent),
+    radial-gradient(2px 2px at 500px 400px, white, transparent),
+    radial-gradient(2px 2px at 700px 100px, white, transparent),
+    radial-gradient(2px 2px at 900px 300px, white, transparent);
+  background-repeat: repeat;
+  background-size: 1000px 700px;
+  animation: starMoveSlow 120s linear infinite;
+  opacity: 0.6;
+}
+
+/* MEDIUM STARS */
+.stars-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(5px 5px at 50px 100px, white, transparent),
+    radial-gradient(5px 5px at 250px 200px, white, transparent),
+    radial-gradient(5px 5px at 450px 150px, white, transparent),
+    radial-gradient(5px 5px at 650px 300px, white, transparent),
+    radial-gradient(5px 5px at 850px 180px, white, transparent);
+  background-repeat: repeat;
+  background-size: 1200px 800px;
+  animation: starMoveFast 80s linear infinite;
+  opacity: 0.8;
+}
+
+/* LARGE STARS (extra layer) */
+.stars-overlay .big-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(10px 10px at 100px 200px, white, transparent),
+    radial-gradient(10px 10px at 400px 100px, white, transparent),
+    radial-gradient(10px 10px at 700px 250px, white, transparent),
+    radial-gradient(10px 10px at 1000px 150px, white, transparent);
+  background-repeat: repeat;
+  background-size: 1400px 900px;
+  animation: starMoveBig 60s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes starMoveSlow {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-700px); }
+}
+
+@keyframes starMoveFast {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-800px); }
+}
+
+@keyframes starMoveBig {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-900px); }
+}

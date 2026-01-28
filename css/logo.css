@@ -1,0 +1,67 @@
+/* =========================
+   CODE / AUTOMATION LOGO
+========================= */
+
+.code-logo {
+  width: 120px;
+  height: 100px;
+  border: 6px solid #ffffff;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 20px;
+
+  transform: scale(0.7);
+  transform-origin: top left;
+}
+
+
+/* top browser bar */
+.browser-bar {
+  height: 26px;
+  border-bottom: 6px solid #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 8px;
+}
+
+.browser-bar span {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+/* code area */
+.code-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* arrows */
+.arrow {
+  width: 20px;
+  height: 20px;
+  border: 6px solid #ffffff;
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(45deg);
+}
+
+.arrow.right {
+  transform: rotate(-135deg);
+}
+
+/* slash */
+.slash {
+  width: 8px;
+  height: 40px;
+  background: #ff0000;
+  transform: rotate(20deg);
+  border-radius: 4px;
+}
