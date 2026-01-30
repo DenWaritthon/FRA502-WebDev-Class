@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Counter</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <div class="wallpaper"></div>
+
+    <div class="app">
+        <!-- Counter -->
+        <section class="card">
+            <header class="card-header">
+                <div>
+                    <div class="title">User Counting System</div>
+                    <div class="subtitle">Increase/decrease, save with date and time, reset to 0.</div>
+                </div>
+            </header>
+
+            <div class="card-body">
+                <div class="counter">
+                    <div class="display">
+                        <div class="label">Number of users</div>
+                        <div class="value" id="count">0</div>
+                    </div>
+
+                    <div class="actions">
+                        <button id="btnInc" class="btn-primary" type="button">➕</button>
+                        <button id="btnDec" class="btn-danger" type="button">➖</button>
+                        <button id="btnSave" class="btn-ok" type="button">💾 Save</button>
+                        <button id="btnReset" type="button">↩️ Reset</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Log -->
+        <section class="card">
+            <header class="card-header">
+                <div>
+                    <div class="title">Data logging display section.</div>
+                    <div class="subtitle">Show the number of records, along with the date and time.</div>
+                </div>
+            </header>
+
+            <div class="card-body">
+                <div class="log">
+                    <div id="logEmpty" class="log-empty" hidden>
+                        There is no data saved yet. Click 💾 button to add the first item.
+                    </div>
+                    <ol id="logList" class="log-list"></ol>
+
+                    <div class="footer-actions">
+                        <button id="btnClearLog" class="btn-danger" type="button">🧹 Clear all history</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>

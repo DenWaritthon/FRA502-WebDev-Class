@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>นับจำนวนผู้ใช้บริการ</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --text: #e9eefc;
+      --muted: #9fb0d0;
+      --accent: #4f8cff;
+      --danger: #ff5a6a;
+      --ok: #33d6a6;
+      --border: rgba(255, 255, 255, .08);
+      --shadow: 0 20px 50px rgba(0, 0, 0, .35);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 15% 10%, rgba(79, 140, 255, .25), transparent 60%),
+        radial-gradient(900px 500px at 85% 20%, rgba(51, 214, 166, .18), transparent 60%),
+        radial-gradient(800px 500px at 45% 90%, rgba(255, 90, 106, .14), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 900px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .counter {
+      display: grid;
+      gap: 14px;
+    }
+
+    .display {
+      background: rgba(0, 0, 0, .22);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .display .label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .display .value {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .actions.secondary {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .06);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, .09);
+      border-color: rgba(255, 255, 255, .16);
+    }
+
+    button:active {
+      transform: translateY(1px) scale(.99);
+    }
+
+    .btn-primary {
+      background: rgba(79, 140, 255, .22);
+      border-color: rgba(79, 140, 255, .35);
+    }
+
+    .btn-primary:hover {
+      background: rgba(79, 140, 255, .28);
+      border-color: rgba(79, 140, 255, .45);
+    }
+
+    .btn-danger {
+      background: rgba(255, 90, 106, .18);
+      border-color: rgba(255, 90, 106, .32);
+    }
+
+    .btn-danger:hover {
+      background: rgba(255, 90, 106, .24);
+      border-color: rgba(255, 90, 106, .42);
+    }
+
+    .btn-ok {
+      background: rgba(51, 214, 166, .16);
+      border-color: rgba(51, 214, 166, .32);
+    }
+
+    .btn-ok:hover {
+      background: rgba(51, 214, 166, .22);
+      border-color: rgba(51, 214, 166, .42);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .log {
+      display: grid;
+      gap: 10px;
+    }
+
+    .log-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      max-height: 440px;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .log-item {
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, .20);
+      border-radius: 14px;
+      padding: 12px 12px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .log-item .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .06);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .log-item .count {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+
+    .log-empty {
+      border: 1px dashed rgba(255, 255, 255, .16);
+      background: rgba(0, 0, 0, .12);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .footer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      padding: 2px 6px;
+      border: 1px solid var(--border);
+      border-bottom-color: rgba(255, 255, 255, .18);
+      border-radius: 7px;
+      background: rgba(0, 0, 0, .25);
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <!-- Counter -->
+    <section class="card" aria-label="ตัวนับผู้ใช้บริการ">
+      <header class="card-header">
+        <div>
+          <div class="title">ระบบนับจำนวนผู้ใช้บริการ</div>
+          <div class="subtitle">เพิ่ม/ลด, บันทึกพร้อมวันเวลา, รีเซ็ตเป็น 0</div>
+        </div>
+      </header>
+      <div class="card-body">
+        <div class="counter">
+          <div class="display" role="status" aria-live="polite">
+            <div class="label">จำนวนผู้ใช้บริการ (คน)</div>
+            <div class="value" id="count">0</div>
+            <div class="hint">หมายเหตุ: ระบบจะเก็บประวัติการบันทึกไว้ในเครื่อง (LocalStorage) แม้รีเฟรชหน้าเว็บ</div>
+          </div>
+
+          <div class="actions" aria-label="ปุ่มเพิ่มลด">
+            <button id="btnInc" class="btn-primary" type="button">➕ เพิ่มจำนวน</button>
+            <button id="btnDec" class="btn-danger" type="button">➖ ลดจำนวน</button>
+          </div>
+
+          <div class="actions secondary" aria-label="ปุ่มบันทึกและรีเซ็ต">
+            <button id="btnSave" class="btn-ok" type="button">💾 บันทึก</button>
+            <button id="btnReset" type="button">↩️ รีเซ็ตเป็น 0</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Log -->
+    <section class="card" aria-label="ประวัติการบันทึก">
+      <header class="card-header">
+        <div>
+          <div class="title">ส่วนแสดงผลการบันทึกข้อมูล</div>
+          <div class="subtitle">แสดงจำนวนที่บันทึก พร้อมวันและเวลา</div>
+        </div>
+      </header>
+      <div class="card-body">
+        <div class="log">
+          <div id="logEmpty" class="log-empty" hidden>
+            ยังไม่มีข้อมูลที่บันทึกไว้ กดปุ่ม <b>บันทึก</b> เพื่อเพิ่มรายการแรก
+          </div>
+          <ol id="logList" class="log-list"></ol>
+
+          <div class="footer-actions" aria-label="จัดการประวัติ">
+            <button id="btnClearLog" class="btn-danger" type="button">🧹 ล้างประวัติทั้งหมด</button>
+            <button id="btnExport" type="button">⬇️ ส่งออกเป็นไฟล์ .json</button>
+          </div>
+          <div class="hint" style="margin-top:10px;">
+            เคล็ดลับ: ถ้าต้องการบันทึกหลายครั้งในวันเดียว รายการจะเรียงจากใหม่ไปเก่าโดยอัตโนมัติ
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    let count = 0;
+    /** @type {{count:number, iso:string}[]} */
+    let logs = [];
+
+    function clampNonNegative(n) {
+      return Math.max(0, n);
+    }
+
+    function formatThaiDateTime(iso) {
+      const dt = new Date(iso);
+      return dt.toLocaleString("th-TH", {
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+    }
+
+    function renderCount() {
+      $("count").textContent = String(count);
+    }
+
+    function renderLogs() {
+      const list = $("logList");
+      list.innerHTML = "";
+
+      if (!logs.length) {
+        $("logEmpty").hidden = false;
+        return;
+      }
+      $("logEmpty").hidden = true;
+
+      for (const item of logs) {
+        const li = document.createElement("li");
+        li.className = "log-item";
+
+        const row1 = document.createElement("div");
+        row1.className = "row";
+
+        const dt = document.createElement("span");
+        dt.className = "pill";
+        dt.textContent = formatThaiDateTime(item.iso);
+
+        const delBtn = document.createElement("button");
+        delBtn.type = "button";
+        delBtn.textContent = "ลบ";
+        delBtn.title = "ลบรายการนี้";
+        delBtn.style.padding = "6px 10px";
+        delBtn.style.borderRadius = "12px";
+        delBtn.addEventListener("click", () => {
+          logs = logs.filter((x) => x !== item);
+          renderLogs();
+        });
+
+        row1.appendChild(dt);
+        row1.appendChild(delBtn);
+
+        const row2 = document.createElement("div");
+        row2.className = "row";
+
+        const label = document.createElement("span");
+        label.className = "subtitle";
+        label.textContent = "จำนวนที่บันทึก";
+
+        const c = document.createElement("span");
+        c.className = "count";
+        c.textContent = `${item.count} คน`;
+
+        row2.appendChild(label);
+        row2.appendChild(c);
+
+        li.appendChild(row1);
+        li.appendChild(row2);
+        list.appendChild(li);
+      }
+    }
+
+    function inc() {
+      count += 1;
+      renderCount();
+    }
+
+    function dec() {
+      count = clampNonNegative(count - 1);
+      renderCount();
+    }
+
+    function reset() {
+      count = 0;
+      renderCount();
+    }
+
+    function save() {
+      const now = new Date().toISOString();
+      logs.unshift({ count, iso: now });
+      logs = logs.slice(0, 500);
+      renderLogs();
+    }
+
+    function clearLog() {
+      const ok = confirm("ต้องการล้างประวัติทั้งหมดใช่หรือไม่?");
+      if (!ok) return;
+      logs = [];
+      renderLogs();
+    }
+
+    function exportJson() {
+      const data = {
+        exported_at: new Date().toISOString(),
+        count,
+        logs,
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `service-counter-${new Date().toISOString().replaceAll(":", "-")}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // เริ่มต้น
+    renderCount();
+    renderLogs();
+
+    $("btnInc").addEventListener("click", inc);
+    $("btnDec").addEventListener("click", dec);
+    $("btnReset").addEventListener("click", reset);
+    $("btnSave").addEventListener("click", save);
+    $("btnClearLog").addEventListener("click", clearLog);
+    $("btnExport").addEventListener("click", exportJson);
+
+    // Keyboard shortcuts
+    window.addEventListener("keydown", (e) => {
+      const tag = e.target?.tagName?.toLowerCase() || "";
+      const isTyping = tag === "input" || tag === "textarea" || e.target?.isContentEditable;
+      if (isTyping) return;
+
+      if (e.key === "+" || e.key === "=") inc();
+      else if (e.key === "-" || e.key === "_") dec();
+      else if (e.key.toLowerCase() === "s") save();
+      else if (e.key.toLowerCase() === "r") reset();
+    });
+
+  </script>
+</body>
+
+</html>
