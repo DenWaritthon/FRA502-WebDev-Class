@@ -1,0 +1,22 @@
+html {
+  background-image: linear-gradient(to bottom right, #100869, #399497);
+  min-height: 100vh;
+  min-width: 300px;
+}
+
+.wallpaper {
+  display: block;
+  pointer-events: none;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.wallpaper {
+  background-image: url("../assets/wallpaper.jpg");
+  background-position: center;
+  background-size: cover;
+  opacity: 0.2;
+  position: fixed;
+}

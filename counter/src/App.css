@@ -1,0 +1,13 @@
+.app {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 18px;
+}
+
+@media (max-width: 860px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+}
