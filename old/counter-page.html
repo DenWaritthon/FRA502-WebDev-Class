@@ -10,59 +10,75 @@
 </head>
 
 <body>
-    <div class="wallpaper"></div>
+  <div class="wallpaper" aria-hidden="true"></div>
 
-    <div class="app">
-        <!-- Counter -->
-        <section class="card">
-            <header class="card-header">
-                <div>
-                    <div class="title">User Counting System</div>
-                    <div class="subtitle">Increase/decrease, save with date and time, reset to 0.</div>
-                </div>
-            </header>
+  <main class="app">
+    <!-- LEFT: Counter -->
+    <section class="card" aria-label="ตัวนับผู้ใช้บริการ">
+      <header class="card-header">
+        <div>
+          <div class="title">User Counting System</div>
+        </div>
+      </header>
 
-            <div class="card-body">
-                <div class="counter">
-                    <div class="display">
-                        <div class="label">Number of users</div>
-                        <div class="value" id="count">0</div>
-                    </div>
+      <div class="card-body">
+        <div class="counter">
 
-                    <div class="actions">
-                        <button id="btnInc" class="btn-blue" type="button">➕</button>
-                        <button id="btnDec" class="btn-red" type="button">➖</button>
-                        <button id="btnSave" class="btn-green" type="button">💾 Save</button>
-                        <button id="btnReset" type="button">↩️ Reset</button>
-                    </div>
-                </div>
+          <!-- Man -->
+          <div class="display" role="status" aria-live="polite">
+            <div class="label">Man</div>
+            <div class="value" id="countMan">0</div>
+
+            <div class="inline-actions" aria-label="ปุ่มเพิ่มลดชาย">
+              <button id="btnManInc" class="btn-primary" type="button">+</button>
+              <button id="btnManDec" class="btn-danger" type="button">-</button>
             </div>
-        </section>
+          </div>
 
-        <!-- Log -->
-        <section class="card">
-            <header class="card-header">
-                <div>
-                    <div class="title">Data logging display section.</div>
-                    <div class="subtitle">Show the number of records, along with the date and time.</div>
-                </div>
-            </header>
+          <!-- Woman -->
+          <div class="display" role="status" aria-live="polite">
+            <div class="label">Woman</div>
+            <div class="value" id="countWoman">0</div>
 
-            <div class="card-body">
-                <div class="log">
-                    <div id="logEmpty" class="log-empty" hidden>
-                        There is no data saved yet. Click 💾 button to add the first item.
-                    </div>
-                    <ol id="logList" class="log-list"></ol>
-
-                    <div class="log-actions">
-                        <button id="btnClearLog" class="btn-red" type="button">🧹 Clear all history</button>
-                    </div>
-                </div>
+            <div class="inline-actions" aria-label="ปุ่มเพิ่มลดหญิง">
+              <button id="btnWomanInc" class="btn-primary" type="button">+</button>
+              <button id="btnWomanDec" class="btn-danger" type="button">-</button>
             </div>
-        </section>
-    </div>
+          </div>
 
+          <!-- Save / Reset -->
+          <div class="actions secondary" aria-label="ปุ่มบันทึกและรีเซ็ต">
+            <button id="btnSave" class="btn-ok" type="button">save</button>
+            <button id="btnReset" type="button">reset</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Log -->
+    <section class="card" aria-label="ส่วนแสดงผลการบันทึกข้อมูล">
+      <header class="card-header">
+        <div>
+          <div class="title">Data logging display section.</div>
+        </div>
+      </header>
+
+      <div class="card-body">
+        <div class="log">
+          <div id="logEmpty" class="log-empty" hidden>
+            There is no data saved yet. Click save button to add the first item
+          </div>
+
+          <ol id="logList" class="log-list"></ol>
+
+          <div class="footer-actions">
+            <button id="btnClearLog" class="btn-danger" type="button">clear all history</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>

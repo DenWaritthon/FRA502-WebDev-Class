@@ -1,0 +1,45 @@
+.counter {
+  display: grid;
+  gap: 14px;
+}
+
+.display {
+  background: #080414;
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.display .label {
+  color: var(--sub-text);
+  font-size: 13px;
+}
+
+.display .value {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.actions {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 10px;
+}
+
+.actions button {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 0;
+}

@@ -1,0 +1,63 @@
+.log {
+  display: grid;
+  gap: 10px;
+}
+
+.log-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  max-height: 300px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.log-item {
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, .20);
+  border-radius: 14px;
+  padding: 12px 12px;
+  display: grid;
+  gap: 5px;
+}
+
+.log-item .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pill {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, .06);
+  color: var(--sub-text);
+  white-space: nowrap;
+}
+
+.log-item .count {
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: .3px;
+}
+
+.log-empty {
+  border: 1px dashed rgba(255, 255, 255, .16);
+  background: rgba(0, 0, 0, .12);
+  border-radius: 14px;
+  padding: 14px;
+  color: var(--sub-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.log-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}

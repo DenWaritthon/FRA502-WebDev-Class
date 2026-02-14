@@ -1,0 +1,11 @@
+.actions-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.actions-footer button {
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-weight: 700;
+}
