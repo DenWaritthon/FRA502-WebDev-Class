@@ -1,9 +1,19 @@
 import React from 'react'
 import Counter from './Counter'
 import './Card.css'
+import './Button.css'
 import './FooterAction.css'
 
-function Action() {
+function Action({
+  man,
+  woman,
+  onIncMan,
+  onDecMan,
+  onIncWoman,
+  onDecWoman,
+  onSave,
+  onResetAll,
+}) {
   return (
     <section className="card">
       <header className="card-header">
@@ -15,12 +25,22 @@ function Action() {
 
       <div className="card-body">
         <div className="counter">
-          <Counter userName={'Man'} />
-          <Counter userName={'Woman'} />
+          <Counter
+            userName={'Man'}
+            value={man}
+            onInc={onIncMan}
+            onDec={onDecMan}
+          />
+          <Counter
+            userName={'Woman'}
+            value={woman}
+            onInc={onIncWoman}
+            onDec={onDecWoman}
+          />
 
           <div className="actions-footer">
-            <button id="btnSave" className="btn-green" type="button">save</button>
-            <button id="btnReset" className="btn-red" type="button">reset</button>
+            <button className="btn-green" type="button" onClick={onSave}>save</button>
+            <button className="btn-red" type="button" onClick={onResetAll}>reset</button>
           </div>
           
         </div>
