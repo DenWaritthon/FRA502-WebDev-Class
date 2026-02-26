@@ -28,7 +28,16 @@ function App() {
   }
 
   // save log function
-  const save = () => {
+  const save = async () => {
+  await fetch('http://localhost:3000/counter/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      male_count: man,
+      female_count: woman,
+      total_count: man + woman,
+    }),
+  })
     const now = new Date().toISOString()
     const entry = { man, woman, total: man + woman, iso: now }
     setLogs(prev => [entry, ...prev].slice(0, 500))
