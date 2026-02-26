@@ -4,27 +4,24 @@ import Action from './component/Action'
 import LogShow from './component/LogShow'
 import './App.css'
 
-const API_BASE = 'http://localhost:3000' // Base URL for the API server (adjust if your server runs on a different port or address)
+const API_BASE = 'http://10.61.200.60/fibo6550/counter'
 
 function getRangeDates(range) {
   const now = new Date()
 
   switch (range) {
-    case '3m':
-      return { from: new Date(now.getTime() - 3 * 60 * 1000), to: now }
+    case '15m':
+      return { from: new Date(now.getTime() - 5 * 60 * 1000), to: now }
     case '30m':
       return { from: new Date(now.getTime() - 30 * 60 * 1000), to: now }
     case '1h':
       return { from: new Date(now.getTime() - 60 * 60 * 1000), to: now }
+    case '2h':
+      return { from: new Date(now.getTime() - 2 * 60 * 60 * 1000), to: now }
     case '1d':
       return { from: new Date(now.getTime() - 24 * 60 * 60 * 1000), to: now }
-    case '1w':
-      return { from: new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000), to: now }
-    case '1M': {
-      const from = new Date(now)
-      from.setMonth(from.getMonth() - 1)
-      return { from, to: now }
-    }
+    case '2d':
+      return { from: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000), to: now }
     case 'all':
       return { from: new Date('2000-01-01T00:00:00.000Z'), to: now }
     default:
@@ -38,7 +35,7 @@ function App() {
   const [woman, setWoman] = useState(0)
 
   // dropdown range
-  const [range, setRange] = useState('30m')
+  const [range, setRange] = useState('all')
 
   // logs shown in LogShow
   const [logs, setLogs] = useState([])
@@ -63,9 +60,7 @@ function App() {
     const { from, to } = getRangeDates(r)
 
     const url =
-      `${API_BASE}/counter/logs` +
-      `?from=${encodeURIComponent(from.toISOString())}` +
-      `&to=${encodeURIComponent(to.toISOString())}`
+      `${API_BASE}/api/logs/${encodeURIComponent(from.toISOString())}/${encodeURIComponent(to.toISOString())}`
 
     const res = await fetch(url)
     if (!res.ok) {
@@ -87,7 +82,7 @@ function App() {
 
   // save log function
   const save = async () => {
-    const url = `${API_BASE}/counter/save`
+    const url = `${API_BASE}/api/save`
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

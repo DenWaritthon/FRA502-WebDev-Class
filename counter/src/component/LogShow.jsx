@@ -30,20 +30,19 @@ function LogShow({ logs, range, onRangeChange }) {
           <div className="log-actions" >
             <label >Show :</label>
             <select value={range} onChange={(e) => onRangeChange(e.target.value)}>
-              
-              <option value="3m">last 3 min</option>
+              <option value="15m">last 15 min</option>
               <option value="30m">last 30 min</option>
-              <option value="1h">last 1 hr</option>
+              <option value="1h">last 1 hour</option>
+              <option value="2h">last 2 hour</option>
               <option value="1d">last 1 day</option>
-              <option value="1w">last 1 week</option>
-              <option value="1M">last 1 month</option>
+              <option value="2d">last 2 day</option>
               <option value="all">All</option>
             </select>
           </div>
 
           {!logs.length && (
             <div className="log-empty">
-              There is no data saved yet. Click save button to add the first item.
+              No data was recorded during the selected time period.
             </div>
           )}
 
