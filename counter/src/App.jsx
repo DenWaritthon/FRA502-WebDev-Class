@@ -32,6 +32,7 @@ function App() {
     const now = new Date().toISOString()
     const entry = { man, woman, total: man + woman, iso: now }
     setLogs(prev => [entry, ...prev].slice(0, 500))
+    resetAll()
   }
 
   // clear all history function
