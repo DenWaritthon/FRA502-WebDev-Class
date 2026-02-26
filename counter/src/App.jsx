@@ -29,7 +29,7 @@ function App() {
 
   // save log function
   const save = async () => {
-  await fetch('http://localhost:3000/counter/save', {
+  await fetch('http://localhost:3000/counter/save', { // Update with your server's URL and endpoint
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -51,11 +51,6 @@ function App() {
     setLogs([])
   }
 
-  // remove one log entry function
-  const removeOne = (index) => {
-    setLogs(prev => prev.filter((_, idx) => idx !== index))
-  }
-
   // render
   return (
     <div>
@@ -74,8 +69,6 @@ function App() {
         />
         <LogShow
           logs={logs}
-          onClearAll={clearAllHistory}
-          onRemoveOne={removeOne}
         />
       </div>
     </div>

@@ -59,9 +59,57 @@
   color: var(--text);
 }
 
+/* ===== Log Actions (Time Range Selector) ===== */
 .log-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+}
+
+/* label */
+.log-actions label {
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* dropdown */
+.log-actions select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding: 6px 32px 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+
+    cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  /* ✅ ลูกศร dropdown (ทำเองด้วย data-uri) */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(230,235,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.log-actions select:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.log-actions select:focus {
+  outline: none;
+  border-color: rgba(120, 160, 255, 0.75);
+  box-shadow: 0 0 0 3px rgba(120, 160, 255, 0.18);
+}
+
+
+.log-actions select option {
+  background: #080414;
+  color: var(--text);
 }

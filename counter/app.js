@@ -10,17 +10,17 @@ const port = 3000;
 
 // PostgreSQL connection configuration
 const pool = new Pool({
-  host: "localhost",
-  port: 5432,
-  user: "personal",
-  password: "3369",
-  database: "WebDev",
+  host: "localhost", // PostgreSQL server address
+  port: 5432, // PostgreSQL default port
+  user: "personal", // PostgreSQL username
+  password: "3369", // PostgreSQL password
+  database: "WebDev", // PostgreSQL database name
 });
 
 // Enable CORS for React app
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5173", // React app origin address
     methods: ["GET", "POST", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   })

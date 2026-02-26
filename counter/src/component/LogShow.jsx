@@ -14,7 +14,7 @@ function formatThaiDateTimeAD(iso) {
   })
 }
 
-function LogShow({ logs, onClearAll, onRemoveOne }) {
+function LogShow({ logs, range, onRangeChange }) {
   return (
     <section className="card">
       <header className="card-header">
@@ -26,6 +26,19 @@ function LogShow({ logs, onClearAll, onRemoveOne }) {
 
       <div className="card-body">
         <div className="log">
+          
+          <div className="log-actions" >
+            <label >Show :</label>
+            <select value={range} onChange={(e) => onRangeChange(e.target.value)}>
+              <option value="30m">last 30 min</option>
+              <option value="1h">last 1 hr</option>
+              <option value="1d">last 1 day</option>
+              <option value="1w">last 1 week</option>
+              <option value="1M">last 1 month</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+
           {!logs.length && (
             <div className="log-empty">
               There is no data saved yet. Click save button to add the first item.
@@ -37,9 +50,6 @@ function LogShow({ logs, onClearAll, onRemoveOne }) {
               <li className="log-item" key={`${item.iso}-${idx}`}>
                 <div className="row">
                   <span className="pill">{formatThaiDateTimeAD(item.iso)}</span>
-                  <button type="button" className="btn-red" onClick={() => onRemoveOne(idx)}>
-                    Delete
-                  </button>
                 </div>
 
                 <div className="row">
@@ -59,12 +69,6 @@ function LogShow({ logs, onClearAll, onRemoveOne }) {
               </li>
             ))}
           </ol>
-
-          <div className="log-actions">
-            <button className="btn-red" type="button" onClick={onClearAll}>
-              Clear all history
-            </button>
-          </div>
         </div>
       </div>
     </section>
