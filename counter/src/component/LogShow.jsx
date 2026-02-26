@@ -30,6 +30,8 @@ function LogShow({ logs, range, onRangeChange }) {
           <div className="log-actions" >
             <label >Show :</label>
             <select value={range} onChange={(e) => onRangeChange(e.target.value)}>
+              
+              <option value="3m">last 3 min</option>
               <option value="30m">last 30 min</option>
               <option value="1h">last 1 hr</option>
               <option value="1d">last 1 day</option>

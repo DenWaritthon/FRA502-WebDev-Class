@@ -54,6 +54,32 @@ app.post("/counter/save", async (req, res) => {
   }
 });
 
+// Get Counter Logs
+app.get("/counter/logs", async (req, res) => {
+  const { from, to } = req.query;
+
+  if (!from || !to) {
+    return res.status(400).json({ error: "from and to are required" });
+  }
+
+  const query = `
+    SELECT id, male_count, female_count, total_count, created_at
+    FROM counter_logs
+    WHERE created_at >= $1::timestamptz
+      AND created_at <  $2::timestamptz
+    ORDER BY created_at DESC
+    LIMIT 500;
+  `;
+
+  try {
+    const result = await pool.query(query, [from, to]);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "An error occurred while fetching logs" });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
