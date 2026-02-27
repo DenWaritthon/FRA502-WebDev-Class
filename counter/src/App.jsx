@@ -10,18 +10,16 @@ function getRangeDates(range) {
   const now = new Date()
 
   switch (range) {
-    case '15m':
+    case '5m':
       return { from: new Date(now.getTime() - 5 * 60 * 1000), to: now }
-    case '30m':
-      return { from: new Date(now.getTime() - 30 * 60 * 1000), to: now }
+    case '15m':
+      return { from: new Date(now.getTime() - 15 * 60 * 1000), to: now }
     case '1h':
       return { from: new Date(now.getTime() - 60 * 60 * 1000), to: now }
     case '2h':
       return { from: new Date(now.getTime() - 2 * 60 * 60 * 1000), to: now }
     case '1d':
       return { from: new Date(now.getTime() - 24 * 60 * 60 * 1000), to: now }
-    case '2d':
-      return { from: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000), to: now }
     case 'all':
       return { from: new Date('2000-01-01T00:00:00.000Z'), to: now }
     default:
