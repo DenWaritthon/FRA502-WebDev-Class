@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 
 export default function TorusKnot() {
+  const fontUrl = `${import.meta.env.BASE_URL}BitcountPropDouble-Regular.woff`;
   const meshRef = useRef();
 
   useFrame((_, delta) => {
@@ -19,7 +20,7 @@ export default function TorusKnot() {
         <meshStandardMaterial color="#ffffff" roughness={0} metalness={0} />
       </mesh>
       <Text
-        font="./BitcountPropDouble-Regular.woff"
+        font={fontUrl}
         fontSize={1.5}
         color='#ffffff'
         position={[0, 12, 6]}

@@ -3,6 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF, Text } from '@react-three/drei';
 
 export default function Bunny() {
+  const modelUrl = `${import.meta.env.BASE_URL}bunny-transformed.glb`;
+  const fontUrl = `${import.meta.env.BASE_URL}BitcountPropDouble-Regular.woff`;
   const meshRef = useRef();
 
 
@@ -12,7 +14,7 @@ export default function Bunny() {
     }
   });
 
-  const { scene } = useGLTF('/bunny-transformed.glb');
+  const { scene } = useGLTF(modelUrl);
 
   return (
     <>
@@ -24,7 +26,7 @@ export default function Bunny() {
         castShadow />
 
       <Text
-        font="./BitcountPropDouble-Regular.woff"
+        font={fontUrl}
         fontSize={1.5}
         color= '#ffffff'
         position={[6, 12, -6]}
