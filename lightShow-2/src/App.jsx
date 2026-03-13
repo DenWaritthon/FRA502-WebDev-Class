@@ -6,7 +6,7 @@ export default function App() {
   return (
     <>
       <Canvas 
-        camera={{ fov: 90, position: [0, 18, 20] }}
+        camera={{ fov: 90, position: [0, 10, 18] }}
         gl={{ antialias: true }}>
 
         <Suspense fallback={null}>

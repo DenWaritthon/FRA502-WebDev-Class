@@ -8,6 +8,7 @@ import Floor from './components/Floor';
 import TorusKnot from './components/TorusKnot';
 import Ctransformed from './components/Ctransformed';
 import Bunny from './components/Bunny';
+import Computer from './components/Computer';
 
 export default function Scene() {
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Scene() {
       <TorusKnot />
       <Ctransformed />
       <Bunny />
+      <Computer />
 
 
       <OrbitControls enableDamping target={[0, 6, 0]} />
