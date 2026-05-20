@@ -2,4 +2,4 @@
 ## Fun 07 Three React Fiber
 Waritthon Kongnoo - 65340500050
 
-![Demo on Server](Demo.gif)
+![FUN07-DEMO](./FUN07-DEMO.gif)
