@@ -2,4 +2,4 @@
 ## Fun 06 Three.js
 Waritthon Kongnoo - 65340500050
 
-![Demo on Server](Demo.gif)
+![FUN06-DEMO](./FUN06-DEMO.gif)
