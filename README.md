@@ -5,6 +5,8 @@
 - [Fun 03 Counter](https://github.com/DenWaritthon/FRA502-WebDev-Class/tree/Fun03-Counter)
 - [Fun 04 Counter With React](https://github.com/DenWaritthon/FRA502-WebDev-Class/tree/Fun04-CounterWithReact)
 - [Fun 05 Postres](https://github.com/DenWaritthon/FRA502-WebDev-Class/tree/Fun05-Postgres)
+- [Fun 06 Three.js](https://github.com/DenWaritthon/FRA502-WebDev-Class/tree/Fun06-Three.js)
+- [Fun 07 Three React Fiber](https://github.com/DenWaritthon/FRA502-WebDev-Class/tree/Fun07-ThreeReactFiber)
 ---
 Waritthon Kongnoo - 65340500050
 
